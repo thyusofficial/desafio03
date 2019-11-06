@@ -9,8 +9,10 @@ import CheckinController from './app/controllers/CheckinController';
 const routes = new Router();
 
 routes.get('/', (req, res) => res.json({ message: 'Hello World' }));
-
 routes.post('/sessions', SessionController.store);
+
+routes.get('/students/:id/checkins', CheckinController.index);
+routes.post('/students/:id/checkins', CheckinController.store);
 
 routes.use(authMiddleware);
 
@@ -26,8 +28,5 @@ routes.post('/inscriptions', InscriptionController.store);
 routes.get('/inscriptions', InscriptionController.index);
 routes.put('/inscriptions/:id', InscriptionController.update);
 routes.delete('/inscriptions/:id', InscriptionController.delete);
-
-routes.get('/checkins', CheckinController.index);
-routes.post('/checkins/:id', CheckinController.store);
 
 export default routes;
